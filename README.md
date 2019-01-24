@@ -1,2 +1,0 @@
-# Upmarket
-Capstone Project
