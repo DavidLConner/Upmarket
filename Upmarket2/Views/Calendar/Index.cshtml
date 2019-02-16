@@ -1,8 +1,8 @@
 ﻿@model Upmarket2.Models.Calendar
 
-@*@{
-    ViewData["Title"] = "Index";
-}*@
+@{
+    ViewData["Title"] = "Calendar";
+}
 
 <h1>Please indicate the market day(s) in which you will participate.</h1>
 
@@ -29,10 +29,7 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@*@section Scripts {
+@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}*@
+}
