@@ -36,8 +36,8 @@ namespace Bootstrap.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -50,9 +50,18 @@ namespace Bootstrap.ViewModels
 
     public class RegisterViewModel
     {
-        [Required]
+        /*[Required]
         [Display(Name = "User name")]
-        public string UserName { get; set; }
+        public string UserName { get; set; }*/
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set;}
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set;}
+
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

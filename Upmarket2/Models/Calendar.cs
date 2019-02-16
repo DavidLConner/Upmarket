@@ -7,8 +7,8 @@ namespace Upmarket2.Models
 {
     public class Calendar
     {
-        public bool IsWednesday { get; set; }
+        public bool Wednesday { get; set; }
 
-        public bool IsSaturday { get; set; }
+        public bool Saturday { get; set; }
     }
 }

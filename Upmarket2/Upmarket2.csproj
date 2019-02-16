@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\ProcessRequest.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\Screenshot.png" />
     <None Include="wwwroot\StyleSheet.css" />
   </ItemGroup>

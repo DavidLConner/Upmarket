@@ -1,29 +1,29 @@
 ﻿@model Upmarket2.Models.Calendar
 
-@{
+@*@{
     ViewData["Title"] = "Index";
-}
+}*@
 
-<h1>Index</h1>
+<h1>Please indicate the market day(s) in which you will participate.</h1>
 
 <h4>Calendar</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Index">
+        <form method="post" action="ProcessRequest.cshtml">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsWednesday" /> @Html.DisplayNameFor(model => model.IsWednesday)
+                    <input class="form-check-input" asp-for="Wednesday" /> @Html.DisplayNameFor(model => model.Wednesday)
                 </label>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsSaturday" /> @Html.DisplayNameFor(model => model.IsSaturday)
+                    <input class="form-check-input" asp-for="Saturday" /> @Html.DisplayNameFor(model => model.Saturday)
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Submit" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -33,6 +33,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@
