@@ -3,38 +3,41 @@
 @{
     ViewData["Title"] = "Calendar";
 }
-<h1 <div class="nav-link text-dark" >Hello @User.Identity.Name!</div></h1>
+<div class="text-center">
+    <h1 <div class="nav-link text-dark" >Hello @User.Identity.Name!</div></h1>
 
-<h4>Please indicate the market day(s) in which you will participate.</h4>
+    <h4>Please indicate the market day(s) in which you will participate.</h4>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" action="ProcessRequest.cshtml">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Wednesday" /> @Html.DisplayNameFor(model => model.Wednesday)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Saturday" /> @Html.DisplayNameFor(model => model.Saturday)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary" />
-        </form>
-     </div>
-            
-                    
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="btn ben-primary text-dark">Logout</button>
-                </form>
-            
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" action="ProcessRequest.cshtml">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Wednesday" /> @Html.DisplayNameFor(model => model.Wednesday)
+                    </label>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Saturday" /> @Html.DisplayNameFor(model => model.Saturday)
+                    </label>
+                </div>
+                <div>
+                    Send a message to Helen and Graham Cheater: <br />
+                    <textarea name="vendorRequest" cols="45" rows="10"></textarea>
+                </div>
+            </form>
 
-</div>
-       
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+            <button type="submit" class="btn ben-primary text-dark">Send</button>
+
+
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="btn ben-primary text-dark">Logout</button>
+            </form>
+        </div>
+
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

@@ -12,8 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Style\StyleSheet.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\Screenshot.png" />
-    <None Include="wwwroot\StyleSheet.css" />
   </ItemGroup>
 
 
@@ -21,11 +24,6 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.2" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Style\" />
   </ItemGroup>
 
 </Project>
