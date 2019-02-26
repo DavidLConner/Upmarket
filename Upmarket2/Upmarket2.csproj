@@ -15,10 +15,6 @@
     <Content Include="Style\StyleSheet.css" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\Screenshot.png" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

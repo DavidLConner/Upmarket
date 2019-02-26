@@ -4,6 +4,7 @@
     ViewData["Title"] = "Calendar";
 }
 <div class="text-center">
+    
     <h1 <div class="nav-link text-dark" >Hello @User.Identity.Name!</div></h1>
 
     <h4>Please indicate the market day(s) in which you will participate.</h4>
@@ -37,6 +38,14 @@
             </form>
         </div>
 
+        <style>
+            body {
+                background: url(UpMarketLogo.png)no-repeat center fixed;
+                padding-right:15%;   
+                background-size:40%;
+                
+            }
+        </style>
 
         @section Scripts {
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

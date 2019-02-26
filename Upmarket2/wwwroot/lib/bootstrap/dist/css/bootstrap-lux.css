@@ -427,15 +427,23 @@ h6, .h6 {
 .display-4 {
     font-size: 7.5rem;
     font-weight: 300;
-    line-height: 1;
+    line-height: 1.5;
     
     text-shadow: 2px 2px 8px #000;
+    position:absolute;
+    top:35%;
 
-    z-index: 2;
-    width: 80%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    border-style:ridge;
+    border-width:thick;
+    border-color:floralwhite;
+    box-shadow: 3px;
+   
+    width: 70%;
     padding: 20px;
     text-align: center;  
-    height: 100%;
+   
 
 }
 @import url(https://fonts.googleapis.com/css?family=Lato:100);
