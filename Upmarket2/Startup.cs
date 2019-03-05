@@ -73,5 +73,43 @@ namespace Upmarket2
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        //private async Task CreateRoles(IServiceProvider serviceProvider)
+        //{
+        //    //initializing custom roles 
+        //    var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        //    var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        //    string[] roleNames = { "Admin" };
+
+
+
+        //    // find the user with the admin email 
+        //    var _user = await UserManager.FindByEmailAsync("angstart8@gmail.com");
+
+        //    // check if the user exists
+        //    if (_user == null)
+        //    {
+        //        //Here you could create the super admin who will maintain the web app
+        //        var poweruser = new IdentityUser
+        //        {
+        //            UserName = "Admin",
+        //            Email = "angstart8@gmail.com",
+        //        };
+        //        string adminPassword = "p@$$w0rd";
+
+        //        var createPowerUser = await UserManager.CreateAsync(poweruser, adminPassword);
+        //        if (createPowerUser.Succeeded)
+        //        {
+        //            //here we tie the new user to the role
+        //            await UserManager.AddToRoleAsync(poweruser, "Admin");
+
+        //        }
+        //    }
+        //}
+
+
     }
 }
+
+
+
