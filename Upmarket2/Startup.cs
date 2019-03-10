@@ -13,6 +13,11 @@ using Microsoft.EntityFrameworkCore;
 using Upmarket2.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
+using MailKit;
+using MailKit.Net.Smtp;
+using MimeKit;
+
 
 namespace Upmarket2
 {
@@ -35,6 +40,14 @@ namespace Upmarket2
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            {
+                services.AddMvc();
+                services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+                services.AddTransient<IEmailService, EmailService>();
+                services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            }
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -43,7 +56,10 @@ namespace Upmarket2
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -74,42 +90,83 @@ namespace Upmarket2
             });
         }
 
-        //private async Task CreateRoles(IServiceProvider serviceProvider)
-        //{
-        //    //initializing custom roles 
-        //    var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        //    var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
-        //    string[] roleNames = { "Admin" };
+        public class SmtpMessageChunk
+        {
+
+            public static void SubMain(string[] args)
+            {
+                SendMessageSmtp();
+            }
+
+            public static void SendMessageSmtp()
+            {
+                // Compose a message
+                MimeMessage mail = new MimeMessage();
+                mail.From.Add(new MailboxAddress("Excited User", "foo@YOUR_DOMAIN_NAME"));
+                mail.To.Add(new MailboxAddress("Excited Admin", "angstart8@gmail.com"));
+                mail.Subject = "Hello";
+                mail.Body = new TextPart("plain")
+                {
+                    Text = @"Testing some Mailgun awesomesauce!",
+                };
+
+                // Send it!
+                using (var client = new SmtpClient())
+                {
+                    // XXX - Should this be a little different?
+                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                    client.Connect("smtp.mailgun.org", 587, false);
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+                    client.Authenticate("postmaster@YOUR_DOMAIN_NAME", "3kh9umujora5");
+
+                    client.Send(mail);
+                    client.Disconnect(true);
+                }
+            }
 
 
 
-        //    // find the user with the admin email 
-        //    var _user = await UserManager.FindByEmailAsync("angstart8@gmail.com");
-
-        //    // check if the user exists
-        //    if (_user == null)
-        //    {
-        //        //Here you could create the super admin who will maintain the web app
-        //        var poweruser = new IdentityUser
-        //        {
-        //            UserName = "Admin",
-        //            Email = "angstart8@gmail.com",
-        //        };
-        //        string adminPassword = "p@$$w0rd";
-
-        //        var createPowerUser = await UserManager.CreateAsync(poweruser, adminPassword);
-        //        if (createPowerUser.Succeeded)
-        //        {
-        //            //here we tie the new user to the role
-        //            await UserManager.AddToRoleAsync(poweruser, "Admin");
-
-        //        }
-        //    }
-        //}
 
 
+
+
+            //private async Task CreateRoles(IServiceProvider serviceProvider)
+            //{
+            //    //initializing custom roles 
+            //    var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            //    var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            //    string[] roleNames = { "Admin" };
+
+
+
+            //    // find the user with the admin email 
+            //    var _user = await UserManager.FindByEmailAsync("angstart8@gmail.com");
+
+            //    // check if the user exists
+            //    if (_user == null)
+            //    {
+            //        //Here you could create the super admin who will maintain the web app
+            //        var poweruser = new IdentityUser
+            //        {
+            //            UserName = "Admin",
+            //            Email = "angstart8@gmail.com",
+            //        };
+            //        string adminPassword = "p@$$w0rd";
+
+            //        var createPowerUser = await UserManager.CreateAsync(poweruser, adminPassword);
+            //        if (createPowerUser.Succeeded)
+            //        {
+            //            //here we tie the new user to the role
+            //            await UserManager.AddToRoleAsync(poweruser, "Admin");
+
+            //        }
+            //    }
+            //}
+
+
+        }
     }
 }
-
 
 
